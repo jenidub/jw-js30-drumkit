@@ -1,90 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>JS Drum Kit</title>
-  <link rel="stylesheet" href="./css/main.css">
-  <link rel="stylesheet" href="./css/normalize.css">
-</head>
-<body>
 
-  <div class="photo-credit">
-    <p>Photo by Thibault Trillet from Pexels</p>
-  </div>
-  
-  <div class="keys">
-    <div data-key="65" class="key">
-      <kbd>A</kbd>
-      <span class="sound">clap</span>
-    </div>
-    <div data-key="83" class="key">
-      <kbd>S</kbd>
-      <span class="sound">hihat</span>
-    </div>
-    <div data-key="68" class="key">
-      <kbd>D</kbd>
-      <span class="sound">kick</span>
-    </div>
-    <div data-key="70" class="key">
-      <kbd>F</kbd>
-      <span class="sound">openhat</span>
-    </div>
-    <div data-key="71" class="key">
-      <kbd>G</kbd>
-      <span class="sound">boom</span>
-    </div>
-    <div data-key="72" class="key">
-      <kbd>H</kbd>
-      <span class="sound">ride</span>
-    </div>
-    <div data-key="74" class="key">
-      <kbd>J</kbd>
-      <span class="sound">snare</span>
-    </div>
-    <div data-key="75" class="key">
-      <kbd>K</kbd>
-      <span class="sound">tom</span>
-    </div>
-    <div data-key="76" class="key">
-      <kbd>L</kbd>
-      <span class="sound">tink</span>
-    </div>
-  </div>
+  <!-- HEAD SECTION -->
+  <head>
+    <meta charset="UTF-8">
+    <title>JS Drum Kit</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/normalize.css">
+  </head>
 
+  <!-- BODY SECTION -->
+  <body>
 
-  <audio data-key="65" src="./sounds/clap.wav"></audio>
-  <audio data-key="83" src="./sounds/hihat.wav"></audio>
-  <audio data-key="68" src="./sounds/kick.wav"></audio>
-  <audio data-key="70" src="./sounds/openhat.wav"></audio>
-  <audio data-key="71" src="./sounds/boom.wav"></audio>
-  <audio data-key="72" src="./sounds/ride.wav"></audio>
-  <audio data-key="74" src="./sounds/snare.wav"></audio>
-  <audio data-key="75" src="./sounds/tom.wav"></audio>
-  <audio data-key="76" src="./sounds/tink.wav"></audio>
+    <!-- Pexels Background Credit Banner -->
+    <div class="photo-credit">
+      <p>Photo by Thibault Trillet from Pexels</p>
+    </div>
 
-<script>
-  window.addEventListener('keydown', function(e) {
-    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
-    const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
-    if (!audio){
-      return; //stop function from running if invalid key
-    } else {
-      audio.currentTime = 0; //rewind to the start
-      audio.play(); //play the sound file for the key
-      key.classList.add("playing"); //add the border and scale up when key is pressed
-    }
-  });
+    <!-- Drum Keys in 3 Rows for Drum Kit -->
+    <div class="keys">
+      <div class="row">
+        <div data-key="65" class="key">
+          <kbd>A</kbd>
+          <span class="sound">clap</span>
+        </div>
+        <div data-key="83" class="key">
+          <kbd>S</kbd>
+          <span class="sound">hihat</span>
+        </div>
+        <div data-key="68" class="key">
+          <kbd>D</kbd>
+          <span class="sound">kick</span>
+        </div>
+      </div>
 
-  function removeTransition(e) {
-    if (e.propertyName !== 'transform') return; //skip if it's not a transform
-    this.classList.remove('playing');
-  };
+      <div class="row">
+        <div data-key="70" class="key">
+          <kbd>F</kbd>
+          <span class="sound">openhat</span>
+        </div>
+        <div data-key="71" class="key">
+          <kbd>G</kbd>
+          <span class="sound">boom</span>
+        </div>
+        <div data-key="72" class="key">
+          <kbd>H</kbd>
+          <span class="sound">ride</span>
+        </div>
+      </div>
 
-  const keys = document.querySelectorAll('.key');
-  keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+      <div class="row">
+        <div data-key="74" class="key">
+          <kbd>J</kbd>
+          <span class="sound">snare</span>
+        </div>
+        <div data-key="75" class="key">
+          <kbd>K</kbd>
+          <span class="sound">tom</span>
+        </div>
+        <div data-key="76" class="key">
+          <kbd>L</kbd>
+          <span class="sound">tink</span>
+        </div>
+      </div>
+    </div>
 
-</script>
+    <!-- Media Files for the Drum Kit -->
+    <audio data-key="65" src="./sounds/clap.wav"></audio>
+    <audio data-key="83" src="./sounds/hihat.wav"></audio>
+    <audio data-key="68" src="./sounds/kick.wav"></audio>
+    <audio data-key="70" src="./sounds/openhat.wav"></audio>
+    <audio data-key="71" src="./sounds/boom.wav"></audio>
+    <audio data-key="72" src="./sounds/ride.wav"></audio>
+    <audio data-key="74" src="./sounds/snare.wav"></audio>
+    <audio data-key="75" src="./sounds/tom.wav"></audio>
+    <audio data-key="76" src="./sounds/tink.wav"></audio>
 
+    <!-- Javascript Commands for Drum Kit -->
+    <script>
+      window.addEventListener('keydown', function(e) {
+        const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+        const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+        if (!audio){
+          return; //stop function from running if invalid key
+        } else {
+          audio.currentTime = 0; //rewind to the start
+          audio.play(); //play the sound file for the key
+          key.classList.add("playing"); //add the border and scale up when key is pressed
+        }
+      });
 
-</body>
+      function removeTransition(e) {
+        if (e.propertyName !== 'transform') return; //skip if it's not a transform
+        this.classList.remove('playing');
+      };
+
+      const keys = document.querySelectorAll('.key');
+      keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+    </script>
+  </body>
 </html>
